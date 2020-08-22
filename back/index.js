@@ -14,6 +14,8 @@ app.set('port', process.env.PORT_BACK || 5678);
 
 // Middlewares
 app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 // Enrutamientos
 app.use('/api/teams',require('./routes/equipo'));

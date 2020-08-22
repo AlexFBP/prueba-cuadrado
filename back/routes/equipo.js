@@ -1,6 +1,29 @@
 const { Router } = require('express');
 const router = Router();
 
-router.get('/',(req,res) => res.json({text: "prueba ruta"}))
+const Equipo = require('../models/equipo')
+
+router.get('/',async (req,res) => {
+  const equipos = await Equipo.find();
+  res.json(equipos);
+});
+
+router.get('/:id', async (req,res) => {
+  const equipo = await Equipo.findById(req.params.id);
+  res.json(equipo);
+})
+
+router.post('/', async (req,res) => {
+  const { name } = req.body;
+  const newEquipo = new Equipo({name});
+  await newEquipo.save();
+  res.send('Equipo guardado');
+});
+
+router.delete('/:id', async (req,res) => {
+  const book = await Equipo.findByIdAndDelete(req.params.id);
+  console.log(book);
+  res.json({msg: "Eliminado"});
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-new esquemaEquipo({
+const esquemaEquipo = new Schema({
   name: {type: String, required: true},
   dt_create: {type: Date, default: Date.now}
 })
