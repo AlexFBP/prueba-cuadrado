@@ -11,14 +11,18 @@ services:
       - ./front:/src-front
       - /src-front/node_modules
 
-  # backend:
-  #   build: back
-  #   ports:
-  #     - "5678:5678"
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - /src-back/node_modules
+  backend:
+    build: back
+    command: "npm start"
+    ports:
+      - "5678:5678"
+    depends_on:
+      - db
+    environment:
+      - NODE_ENV=prod
+      - MONGODB_URL=mongodb://db/jdb
+    volumes:
+      - /src-back/node_modules
 
   db:
     image: mongo:4.4 # ultima estable
