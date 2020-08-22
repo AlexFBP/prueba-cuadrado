@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  front:
+
+  back:
+
+  db:
+    image: mongo:4.4 # latest stable
