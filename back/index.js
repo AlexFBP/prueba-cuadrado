@@ -1,12 +1,16 @@
+if (process.env.NODE_ENV === 'devel')
+  require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
 // Inicializaciones
 const app = express();
+require('./db')
 
 // Ajustes
-app.set('port', 5678);
+app.set('port', process.env.PORT_BACK || 5678);
 
 // Middlewares
 app.use(morgan('dev'));
