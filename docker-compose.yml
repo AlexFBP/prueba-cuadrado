@@ -2,9 +2,23 @@ version: '3'
 
 services:
 
-  front:
+  frontend:
+    build: front
+    command: "npm start"
+    ports:
+      - "4567:3000"
+    volumes:
+      - ./front:/src-front
+      - /src-front/node_modules
 
-  back:
+  # backend:
+  #   build: back
+  #   ports:
+  #     - "5678:5678"
+  #   depends_on:
+  #     - db
+  #   volumes:
+  #     - /src-back/node_modules
 
-  db:
-    image: mongo:4.4 # latest stable
+  # db:
+  #   image: mongo:4.4 # ultima estable
