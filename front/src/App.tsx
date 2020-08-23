@@ -3,10 +3,14 @@ import React from 'react';
 // import './App.css';
 
 import { ListaEquipos } from './components/listaEquipos/equipos';
+import { Partidos } from './components/partidos/partidos';
 
 function App() : JSX.Element {
   return (
+    <>
     <ListaEquipos />
+    <Partidos />
+    </>
   )
   /*
   return (
