@@ -1,10 +1,7 @@
 import React, { useState, useRef } from "react";
+import { IEquipo } from '../../../models/equipo';
 
 type FormElement = React.FormEvent<HTMLFormElement>;
-
-interface IEquipo {
-  name: string;
-}
 
 export const ListaEquipos = () => {
   const [newEquipo, setNewEquipo] = useState<string>("");

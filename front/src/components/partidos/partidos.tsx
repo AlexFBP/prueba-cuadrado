@@ -1,31 +1,11 @@
-import React, { useState, useRef } from "react";
-
-interface IEquipo {
-  name: string;
-}
-
-interface IPartido {
-  eq1: IEquipo
-  eq2: IEquipo
-  p1: number
-  p2: number
-}
+import React, { useState } from "react";
+import { IEquipo } from '../../../models/equipo';
+import { IPartido } from '../../../models/partido';
 
 export const Partidos = () => {
-  // const equipos = ["A", "B", "C", "D"];
+
   const [equipos, setEquipos] = useState<IEquipo[]>([])
   const [partidos, setPartidos] = useState<IPartido[]>([])
-  // const [estado, setEstado] = useState<boolean>(false)
-
-  // const agregaPartido = (eq1: IEquipo, eq2: IEquipo) => {
-  //   const nuevosPartidos: IPartido[] = [...partidos, {eq1,eq2,p1:0,p2:0}];
-  //   setPartidos(nuevosPartidos);
-  // }
-
-  // const creaPartido = (eq1: IEquipo, eq2: IEquipo):IPartido => {
-  //   const newPartido:IPartido = {eq1,eq2,p1:0,p2:0};
-  //   return newPartido;
-  // }
 
   const generaPartidos = () => {
 
@@ -39,6 +19,7 @@ export const Partidos = () => {
     setEquipos(newEquipos);
     console.log("Equipos:");
     console.log(newEquipos);
+    console.log(equipos);
 
     // crear combinaciones
     const combs = newEquipos.flatMap((v, i) =>
