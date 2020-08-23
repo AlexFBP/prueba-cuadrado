@@ -18,7 +18,7 @@ export const ListaEquipos = () => {
   };
 
   const addEquipo = (name: string) => {
-    const nuevosEquipos: IEquipo[] = [...equipos, { name }];
+    const nuevosEquipos: IEquipo[] = [...equipos, { name, puntos:0 }];
     setEquipos(nuevosEquipos);
   };
 

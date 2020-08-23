@@ -11,10 +11,10 @@ export const Partidos = () => {
 
     // TODO: Cargar los equipos con la API
     const newEquipos: IEquipo[] = [
-      {name: "A"},
-      {name: "B"},
-      {name: "C"},
-      {name: "D"}
+      {name: "A", puntos: 0},
+      {name: "B", puntos: 0},
+      {name: "C", puntos: 0},
+      {name: "D", puntos: 0}
     ]
     setEquipos(newEquipos);
     console.log("Equipos:");
