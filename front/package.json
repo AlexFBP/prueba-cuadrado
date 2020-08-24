@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0"
+  },
   "devDependencies": {
     "css-loader": "^4.2.1",
     "html-webpack-plugin": "^4.3.0",
@@ -15,7 +18,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --open",
+    "build": "cross-env NODE_ENV=prod webpack"
   },
   "keywords": [],
   "author": "",
