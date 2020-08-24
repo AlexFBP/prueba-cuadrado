@@ -17,7 +17,7 @@ router.post('/', async (req,res) => {
   const { name } = req.body;
   const newEquipo = new Equipo({name});
   await newEquipo.save();
-  res.send('Equipo guardado');
+  res.json({msg: 'Equipo guardado'});
 });
 
 router.delete('/:id', async (req,res) => {
