@@ -22,6 +22,7 @@ app.use(cors());
 // Enrutamientos
 app.use('/api/teams',require('./routes/equipo'));
 app.use('/api/games',require('./routes/partido'));
+app.use('/api/state',require('./routes/estado'));
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));

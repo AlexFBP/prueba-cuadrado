@@ -22,9 +22,21 @@ router.post("/", async (req, res) => {
 
 router.post("/:id", async (req, res) => {
   const {p1, p2} = req.body;
-  const partido = await Partido.findByIdAndUpdate(req.params.id,{p1,p2})
-  await partido.save();
-  res.json({msg: 'Partido Actualizado'});
+  let upd;
+  if (p1 !== null && p2 === null) {
+    upd = {p1}
+  } else if (p1 === null && p2 !== null) {
+    upd = {p2}
+  } else if (p1 !== null && p2 !== null) {
+    upd = {p1, p2}
+  }
+
+  if (upd !== null) {
+    const partido = await Partido.findByIdAndUpdate(req.params.id,upd)
+    await partido.save();
+    res.json({msg: 'Partido Actualizado'});
+  }
+  res.end();
 });
 
 router.delete("/:id", async (req, res) => {

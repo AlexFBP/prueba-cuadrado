@@ -7,4 +7,4 @@ const esquemaPartido = new Schema({
     p2: {type: Number, default: 0},
 });
 
-module.exports = model ('Estado', esquemaPartido);
+module.exports = model ('Partido', esquemaPartido);

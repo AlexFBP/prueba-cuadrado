@@ -14,26 +14,32 @@ export class partidoService {
             method: 'POST',
             headers: {
                 "content-type": "application/json",
-            },body: JSON.stringify({
+            },
+            body: JSON.stringify({
                 id1: idEquipo1,
                 id2: idEquipo2
             })
         })
     }
 
-    static async actualizaPartido(idPartido,puntosEquipo1,puntosEquipo2) {
-        const r = await fetch(`${PARTIDO_API}/${idPartido}`,{
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: {
-                p1: puntosEquipo1,
-                p2: puntosEquipo2
+    static async actualizaPartido(idPartido,equipo,puntos) {
+        if (equipo == 1 || equipo == 2) {
+            let upd;
+            if (equipo === 1) {
+                upd = {p1:puntos}
+            } else {
+                upd = {p2:puntos}
             }
-        });
-        const data = await r.json();
-        console.log(data);
+            const r = await fetch(`${PARTIDO_API}/${idPartido}`,{
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: upd
+            });
+            const data = await r.json();
+            console.log(data);
+        }
     }
 
     static async borraPartido(idPartido) {
