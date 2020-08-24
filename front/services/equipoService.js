@@ -7,14 +7,6 @@ export class equipoService {
     const resp = await fetch(EQUIPO_API);
     const equipos = await resp.json();
     return equipos;
-    /*
-    return [
-        {name: "A", puntos: 0},
-        {name: "B", puntos: 0},
-        {name: "C", puntos: 0},
-        {name: "D", puntos: 0}
-    ]
-    */
   }
 
   static async creaEquipo(equipo) {

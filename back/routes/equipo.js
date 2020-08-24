@@ -23,7 +23,7 @@ router.post('/', async (req,res) => {
 router.delete('/:id', async (req,res) => {
   const book = await Equipo.findByIdAndDelete(req.params.id);
   console.log(book);
-  res.json({msg: "Eliminado"});
+  res.json({msg: "Equipo Eliminado"});
 });
 
 module.exports = router;
