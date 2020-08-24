@@ -4,9 +4,15 @@ services:
 
   frontend:
     build: front
-    command: "npm start"
+    # command: "npm start"
+    command: "npx http-server build"
     ports:
-      - "4567:3000"
+      - "4567:8080"
+    # depends_on:
+    #   - backend
+    environment:
+      - NODE_ENV=prod
+      - API_URL=http://backend:5678/api/
     volumes:
       - ./front:/src-front
       - /src-front/node_modules
@@ -17,6 +23,8 @@ services:
     # Mas adelante esto se va a cambiar por expose, solo debería ser interno
     ports:
       - "5678:5678"
+    expose:
+      - '5678'
     depends_on:
       - db
     environment:
@@ -30,3 +38,5 @@ services:
     # Mas adelante esto se va a cambiar por expose, solo debería ser interno
     ports:
       - "27017:27017"
+    # expose:
+    #   - '27017'

@@ -1,16 +1,20 @@
+// if (process.env.NODE_ENV !== 'prod')
+//   require('dotenv').config();
+
+// const PARTIDO_API = `${process.env.API_URL}games`;
 const API_URL = "http://localhost:5678/api/";
 const PARTIDO_API = `${API_URL}games`;
 
 export class partidoService {
 
     static async obtienePartidos() {
-        const r = await fetch(PARTIDO_API);
+        const r = await fetch("http://localhost:5678/api/games");
         const partidos = await r.json();
         return partidos;
     }
 
     static async creaPartido(idEquipo1,idEquipo2) {
-        const r = await fetch(PARTIDO_API, {
+        const r = await fetch("http://localhost:5678/api/games", {
             method: 'POST',
             headers: {
                 "content-type": "application/json",
@@ -22,7 +26,7 @@ export class partidoService {
     }
 
     static async actualizaPartido(idPartido,puntosEquipo1,puntosEquipo2) {
-        const r = await fetch(`${PARTIDO_API}/${idPartido}`,{
+        const r = await fetch(`${"http://localhost:5678/api/games"}/${idPartido}`,{
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -37,7 +41,7 @@ export class partidoService {
     }
 
     static async borraPartido(idPartido) {
-        const r = await fetch(`${PARTIDO_API}/${idPartido}`,{
+        const r = await fetch(`${"http://localhost:5678/api/games"}/${idPartido}`,{
             method: 'DELETE',
         })
         const data = await r.json();
