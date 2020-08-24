@@ -3,9 +3,14 @@ const router = Router();
 
 const Partido = require("../models/partido");
 
+router.get('/', async (req,res) => {
+  const partidos = await Partido.find();
+  res.json(partidos);
+});
+
 router.get("/:id", async (req, res) => {
-  const estado = await Estado.findById(req.params.id);
-  res.json(estado);
+  const partido = await Partido.findById(req.params.id);
+  res.json(partido);
 });
 
 router.post("/", async (req, res) => {
