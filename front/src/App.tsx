@@ -6,6 +6,10 @@ import { ListaEquipos } from './components/listaEquipos/equipos';
 import { Partidos } from './components/partidos/partidos';
 import { Resultados } from './components/resultados/resultados';
 
+document.addEventListener('DOMContentLoaded', () => {
+  // TODO: Carga inicial de equipos
+})
+
 function App() : JSX.Element {
   return (
     <>

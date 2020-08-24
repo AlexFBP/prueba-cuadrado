@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { IEquipo } from '../../../models/equipo';
+import { equipoDBconn } from '../../services/equipoService'
 
 type FormElement = React.FormEvent<HTMLFormElement>;
 
@@ -18,7 +19,9 @@ export const ListaEquipos = () => {
   };
 
   const addEquipo = (name: string) => {
-    const nuevosEquipos: IEquipo[] = [...equipos, { name, puntos:0 }];
+    equipoDBconn.creaEquipo(name);
+    const nuevosEquipos: IEquipo[] = [...equipos, { name, puntos:0 ,id: "" }];
+    equipoDBconn.obtieneEquipos();
     setEquipos(nuevosEquipos);
   };
 

@@ -14,6 +14,7 @@ services:
   backend:
     build: back
     command: "npm start"
+    # Mas adelante esto se va a cambiar por expose, solo debería ser interno
     ports:
       - "5678:5678"
     depends_on:
@@ -26,5 +27,6 @@ services:
 
   db:
     image: mongo:4.4 # ultima estable
+    # Mas adelante esto se va a cambiar por expose, solo debería ser interno
     ports:
       - "27017:27017"
