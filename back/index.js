@@ -4,6 +4,7 @@ if (process.env.NODE_ENV === 'devel')
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 // Inicializaciones
 const app = express();
@@ -16,6 +17,7 @@ app.set('port', process.env.PORT_BACK || 5678);
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(cors());
 
 // Enrutamientos
 app.use('/api/teams',require('./routes/equipo'));
