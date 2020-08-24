@@ -15,8 +15,8 @@ export class partidoService {
             headers: {
                 "content-type": "application/json",
             },body: JSON.stringify({
-                eq1: idEquipo1,
-                eq2: idEquipo2
+                id1: idEquipo1,
+                id2: idEquipo2
             })
         })
     }

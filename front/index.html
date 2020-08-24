@@ -18,14 +18,16 @@
   </head>
   <body>
     <header><h1>Cuadrangular</h1></header>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <section class="col-md-5 card card-body">
           <form id="equipo-form">
             <div class="input-group">
               <input type="text" class="form-control" id="equipoInput" autofocus/>
-              <button class="btn btn-primary">Guardar</button>
+              <button class="btn btn-primary">+</button>
+              <a target="#" class="btn btn-primary" id="botonModo">&nbsp;</a>
             </div>
+          </form>
             <table class="table">
               <thead>
                 <tr>
@@ -36,11 +38,10 @@
               </thead>
               <tbody id="equiposContainer"></tbody>
             </table>
-          </form>
         </section>
         <section class="col-md-7">
           <form id="partidos-form">
-            <table>
+            <table class="table">
               <thead>
                 <th>Equipo 1</th>
                 <th colspan="2">Puntos</th>
