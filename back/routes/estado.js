@@ -3,36 +3,36 @@ const router = Router();
 
 const Estado = require('../models/estado');
 
-router.get('/:state', async (req,res) => {
-    const estado = await Estado.findOne({name:req.params.state}, (err,obj) => {
-        if (err)
-            res.end();
-        else
-        res.json(obj);
-    })
-});
+const modoValues = ["registro", "jugando"];
 
-router.post('/:state', async (req,res) => {
-    const { value } = req.body;
-    const estado = await Estado.findOneAndUpdate({name:req.params.state},{value});
-    await estado.save();
-    res.json({msg: 'Estado Actualizado'});
-})
+router.get('/', async (req,res) => {
+    Estado.findOne({name:"modo"}, (err, doc) => {
+        if (err) {
+            // El error aqui puede ser pero de conexion con la base de datos
+            console.log('error')
+            console.log(err);
+            res.status(500).send(err);
+        } else {
+            if (!doc) {
+                const newEstado = new Estado({name: 'modo', value: 'registro'});
+                newEstado.save();
+                console.log('Estado inicializado');
+                console.log(newEstado);
+                res.send('registro');
+            } else {
+                console.log('Estado leido');
+                res.send(doc.value);
+            }
+        }
+    });
+});
 
 router.post('/', async (req,res) => {
-    const {name,value} = req.body;
-    const newEstado = new Estado({name,value});
-    await newEstado.save();
-    res.json({msg: "Estado creado"});
-});
-
-router.delete('/:state', async (req,res) => {
-    const estado = await Estado.findOneAndDelete({name:req.params.state}, (err,obj) => {
-        if (err)
-            res.end();
-        else
-        res.json({msg: "Estado Eliminado"});
-    });
+    const { value } = req.body;
+    if (modoValues.includes(`${value}`)) {
+        await Estado.findOneAndUpdate({name:'modo'},{value});
+        res.send(req.body.value);
+    } else res.status(400).end();
 })
 
 module.exports = router;
