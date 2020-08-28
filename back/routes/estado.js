@@ -40,11 +40,20 @@ const creaPartidos = () => {}
 const puntajesFinales = () => {}
 
 router.post('/', async (req,res) => {
-    const { modo, value } = req.body;
-    if (modo === 'modo' && modoValues.includes(`${value}`)) {
-        await Estado.findOneAndUpdate({name:'modo'},{value});
-        res.send(req.body.value);
+    const { modo } = req.body;
+    const modoPrevio = await leeModo();
+    if (modoValues.includes(`${modo}`)) {
+        await Estado.findOneAndUpdate({name:'modo'},{value:`${modo}`});
+        res.send(req.body.modo);
     } else res.status(400).end();
 })
+
+router.delete('/', async (req,res) => {
+    if (req.body.hasOwnProperty('modo')) {
+        const obj = await Estado.findOneAndDelete({name:'modo'});
+        console.log(obj);
+        res.json(obj);
+    } else res.status(400).end();
+});
 
 module.exports = router;
