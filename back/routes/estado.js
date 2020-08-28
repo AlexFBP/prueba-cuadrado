@@ -36,15 +36,45 @@ router.get('/', async (req,res) => {
     }
 });
 
-const creaPartidos = () => {}
+const Partido = require('../models/partido');
+const Equipo = require('../models/equipo');
+
+const intentaCrearPartidos = async () => {
+    // TODO:
+    // 1. Eliminar todos los partidos
+    await Partido.deleteMany({});
+    // 2. Combinar los equipos actuales
+    const equipos = await Equipo.find();
+    console.log("Equipos:");
+    console.log(equipos);
+    const combs = equipos.flatMap((v,i) => equipos.slice(i+1).map(w => ({v,w}))).map(comb => ({id1:comb.v._id, id2:comb.w._id}));
+    console.log("Combinaciones:");
+    console.log(combs);
+    // 3. Con las combinaciones, generar los partidos.
+}
 const puntajesFinales = () => {}
 
 router.post('/', async (req,res) => {
     const { modo } = req.body;
     const modoPrevio = await leeModo();
     if (modoValues.includes(`${modo}`)) {
-        await Estado.findOneAndUpdate({name:'modo'},{value:`${modo}`});
-        res.send(req.body.modo);
+        console.log(`Actual: ${modo} - Previo: ${modoPrevio.res}`);
+        if (modo !== modoPrevio.res) {
+            console.log('estado con cambios');
+            if (modo === "jugando") {
+                console.log('Modo juego. Creando partidos')
+                // TODO: Validar, combinar y crear partidos
+                intentaCrearPartidos();
+            } else {
+                console.log('Modo registro. Se permite regsitrar equipos')
+                puntajesFinales();
+            }
+            // await Estado.findOneAndUpdate({name:'modo'},{value:`${modo}`});
+            res.send(req.body.modo);
+        } else {
+            console.log('estado sin cambios');
+            res.status(304).end();
+        }
     } else res.status(400).end();
 })
 
